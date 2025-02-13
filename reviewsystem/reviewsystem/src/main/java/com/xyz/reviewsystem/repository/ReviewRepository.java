@@ -10,14 +10,14 @@ import java.util.List;
 @Repository
 public interface ReviewRepository extends JpaRepository<Review, Long> {
 
-    public List<Review> findByProductName(String productName);
-    public List<Review> findByRating(Integer rating);
-    public List<Review> findByTitle(String title);
+    List<Review> findByProductName(String productName);
+    List<Review> findByRating(Integer rating);
+    List<Review> findByTitle(String title);
 
     @Query("select r.productName, avg(r.rating) from Review r group by r.productName")
-    public List<Object[]> findAverageRatingsPerProduct();
+    List<Object[]> findAverageRatingsPerProduct();
 
     @Query("select r.rating, count(r.rating) from Review r group by r.rating")
-    public List<Object[]> findTotalRatingsPerCategory();
+    List<Object[]> findTotalRatingsPerCategory();
 
 }

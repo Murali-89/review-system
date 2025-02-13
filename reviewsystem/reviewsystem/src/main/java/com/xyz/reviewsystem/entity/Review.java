@@ -2,6 +2,9 @@ package com.xyz.reviewsystem.entity;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDateTime;
+import java.util.Date;
+
 @Entity
 @Table(name = "reviews")
 public class Review {
@@ -20,8 +23,19 @@ public class Review {
     private String title;
 
     private String productName;
-    private String reviewedDate;
+    @Column(name = "reviewed_date")
+    private LocalDateTime reviewedDate;
 
+    public Review(Long id, String review, String author, String reviewSource, int rating, String title, String productName, LocalDateTime reviewedDate) {
+        this.id = id;
+        this.review = review;
+        this.author = author;
+        this.reviewSource = reviewSource;
+        this.rating = rating;
+        this.title = title;
+        this.productName = productName;
+        this.reviewedDate = reviewedDate;
+    }
 
     public Review() {
 
@@ -83,11 +97,11 @@ public class Review {
         this.productName = productName;
     }
 
-    public String getReviewedDate() {
+    public LocalDateTime getReviewedDate() {
         return reviewedDate;
     }
 
-    public void setReviewedDate(String reviewedDate) {
+    public void setReviewedDate(LocalDateTime reviewedDate) {
         this.reviewedDate = reviewedDate;
     }
 }

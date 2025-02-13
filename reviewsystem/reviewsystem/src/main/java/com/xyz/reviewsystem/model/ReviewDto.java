@@ -1,18 +1,27 @@
 package com.xyz.reviewsystem.model;
 
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
+
 public class ReviewDto {
 
+    @NotBlank(message = "Review content cannot be blank")
     private String review;
+    @NotBlank(message = "author content cannot be blank")
     private String author;
 
+    @NotBlank(message = "reviewSource content cannot be blank")
     private String reviewSource;
 
+    @Min(1) @Max(5)
     private int rating;
 
+    @NotBlank(message = "title content cannot be blank")
     private String title;
-
+    @NotBlank(message = "productName content cannot be blank")
     private String productName;
-    private String reviewedDate;
 
     public String getReview() {
         return review;
@@ -60,13 +69,5 @@ public class ReviewDto {
 
     public void setProductName(String productName) {
         this.productName = productName;
-    }
-
-    public String getReviewedDate() {
-        return reviewedDate;
-    }
-
-    public void setReviewedDate(String reviewedDate) {
-        this.reviewedDate = reviewedDate;
     }
 }
