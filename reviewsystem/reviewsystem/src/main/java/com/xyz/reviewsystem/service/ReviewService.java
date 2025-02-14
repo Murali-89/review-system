@@ -9,7 +9,7 @@ import java.util.Map;
 public interface ReviewService {
     void addReview(ReviewDto reviewDto);
 
-    List<Review> getReviews(String productName, String rating, String reviewSource);
+    List<Review> getReviews(String store, String rating, String reviewSource);
 
     Map<Integer, Integer> findTotalRatingsPerCategory();
 

@@ -32,10 +32,10 @@ public class ReviewServiceImpl implements ReviewService {
     }
 
     @Override
-    public List<Review> getReviews(String productName, String rating, String title) {
+    public List<Review> getReviews(String store, String rating, String title) {
         List<Review> reviews = null;
-        if (!StringUtils.isEmpty(productName)) {
-            List<Review> optionalReviews = reviewRepository.findByProductName(productName);
+        if (!StringUtils.isEmpty(store)) {
+            List<Review> optionalReviews = reviewRepository.findByStore(store);
             if (optionalReviews.isEmpty())
                 throw new RuntimeException("product name not found");
             return optionalReviews;
@@ -65,7 +65,7 @@ public class ReviewServiceImpl implements ReviewService {
         Map<String, List<Integer>> storeRatings = new HashMap<>();
 
         for (Review review : reviews) {
-            String key = review.getProductName() + "-" + review.getReviewedDate().getYear() + "-" + review.getReviewedDate().getMonthValue();
+            String key = review.getStore() + "-" + review.getReviewedDate().getYear() + "-" + review.getReviewedDate().getMonthValue();
             storeRatings.computeIfAbsent(key, k -> new ArrayList<>()).add(review.getRating());
         }
 
@@ -103,7 +103,7 @@ public class ReviewServiceImpl implements ReviewService {
             review.setReviewSource(reviewDto.getReviewSource());
             review.setRating(reviewDto.getRating());
             review.setTitle(reviewDto.getTitle());
-            review.setProductName(reviewDto.getProductName());
+            review.setStore(reviewDto.getStore());
             review.setReviewedDate(LocalDateTime.now());
             return review;
         }

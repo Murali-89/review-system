@@ -3,7 +3,6 @@ package com.xyz.reviewsystem.model;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
 
 public class ReviewDto {
 
@@ -20,8 +19,8 @@ public class ReviewDto {
 
     @NotBlank(message = "title content cannot be blank")
     private String title;
-    @NotBlank(message = "productName content cannot be blank")
-    private String productName;
+    @NotBlank(message = "store content cannot be blank")
+    private String store;
 
     public String getReview() {
         return review;
@@ -63,11 +62,11 @@ public class ReviewDto {
         this.title = title;
     }
 
-    public String getProductName() {
-        return productName;
+    public String getStore() {
+        return store;
     }
 
-    public void setProductName(String productName) {
-        this.productName = productName;
+    public void setStore(String store) {
+        this.store = store;
     }
 }

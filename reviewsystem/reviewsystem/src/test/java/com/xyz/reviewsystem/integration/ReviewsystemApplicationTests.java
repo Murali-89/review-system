@@ -27,7 +27,7 @@ class ReviewsystemApplicationTests {
 
     @Test
     void testAddReview() {
-        String requestJson = "{\"review\": \"Great product!\",\"author\": \"Alice\", \"reviewSource\": \"iTunes\", \"rating\": 5, \"title\": \"Awesome\", \"productName\": \"Amazon Alexa\", \"reviewedDate\": \"2025-02-07T12:00:00Z\"}";
+        String requestJson = "{\"review\": \"Great product!\",\"author\": \"Alice\", \"reviewSource\": \"iTunes\", \"rating\": 5, \"title\": \"Awesome\", \"store\": \"Amazon Alexa\", \"reviewedDate\": \"2025-02-07T12:00:00Z\"}";
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         HttpEntity<String> entity = new HttpEntity<>(requestJson, headers);

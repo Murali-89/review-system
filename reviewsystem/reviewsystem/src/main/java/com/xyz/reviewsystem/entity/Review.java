@@ -3,7 +3,6 @@ package com.xyz.reviewsystem.entity;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 
 @Entity
 @Table(name = "reviews")
@@ -22,18 +21,18 @@ public class Review {
 
     private String title;
 
-    private String productName;
+    private String store;
     @Column(name = "reviewed_date")
     private LocalDateTime reviewedDate;
 
-    public Review(Long id, String review, String author, String reviewSource, int rating, String title, String productName, LocalDateTime reviewedDate) {
+    public Review(Long id, String review, String author, String reviewSource, int rating, String title, String store, LocalDateTime reviewedDate) {
         this.id = id;
         this.review = review;
         this.author = author;
         this.reviewSource = reviewSource;
         this.rating = rating;
         this.title = title;
-        this.productName = productName;
+        this.store = store;
         this.reviewedDate = reviewedDate;
     }
 
@@ -89,12 +88,12 @@ public class Review {
         this.title = title;
     }
 
-    public String getProductName() {
-        return productName;
+    public String getStore() {
+        return store;
     }
 
-    public void setProductName(String productName) {
-        this.productName = productName;
+    public void setStore(String store) {
+        this.store = store;
     }
 
     public LocalDateTime getReviewedDate() {

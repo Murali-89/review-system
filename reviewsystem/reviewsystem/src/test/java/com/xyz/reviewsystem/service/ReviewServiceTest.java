@@ -40,7 +40,7 @@ public class ReviewServiceTest {
         reviewDto.setReviewSource("Amazon");
         reviewDto.setRating(5);
         reviewDto.setTitle("Excellent");
-        reviewDto.setProductName("Alexa");
+        reviewDto.setStore("Alexa");
 
         // Creating corresponding Review entity
         reviewEntity = new Review();
@@ -49,7 +49,7 @@ public class ReviewServiceTest {
         reviewEntity.setReviewSource(reviewDto.getReviewSource());
         reviewEntity.setRating(reviewDto.getRating());
         reviewEntity.setTitle(reviewDto.getTitle());
-        reviewEntity.setProductName(reviewDto.getProductName());
+        reviewEntity.setStore(reviewDto.getStore());
         reviewEntity.setReviewedDate(LocalDateTime.now());
     }
     @Test
@@ -66,19 +66,19 @@ public class ReviewServiceTest {
         List<Review> reviews = reviewService.getReviews("","","");
 
         assertEquals(1, reviews.size());
-        assertEquals("Alexa", reviews.get(0).getProductName());
+        assertEquals("Alexa", reviews.get(0).getStore());
         verify(reviewRepository, times(1)).findAll();
     }
     @Test
     void testGetAllReviewsWithStoreName() {
         //Review review = new Review();
-        when(reviewRepository.findByProductName(anyString())).thenReturn(Arrays.asList(reviewEntity));
+        when(reviewRepository.findByStore(anyString())).thenReturn(Arrays.asList(reviewEntity));
 
         List<Review> reviews = reviewService.getReviews("Alexa","","");
 
         assertEquals(1, reviews.size());
-        assertEquals("Alexa", reviews.get(0).getProductName());
-        verify(reviewRepository, times(1)).findByProductName(anyString());
+        assertEquals("Alexa", reviews.get(0).getStore());
+        verify(reviewRepository, times(1)).findByStore(anyString());
     }
     @Test
     void testGetAllReviewsWithRating() {
@@ -88,7 +88,7 @@ public class ReviewServiceTest {
         List<Review> reviews = reviewService.getReviews("","1","");
 
         assertEquals(1, reviews.size());
-        assertEquals("Alexa", reviews.get(0).getProductName());
+        assertEquals("Alexa", reviews.get(0).getStore());
         verify(reviewRepository, times(1)).findByRating(anyInt());
     }
 

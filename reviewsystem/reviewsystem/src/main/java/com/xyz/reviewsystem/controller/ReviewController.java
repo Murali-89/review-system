@@ -43,13 +43,13 @@ public class ReviewController {
 
     @GetMapping
     @CrossOrigin(origins = "http://localhost:4200")
-    public ResponseEntity<List<Review>> getReviews(@RequestParam(required = false) String productName,
+    public ResponseEntity<List<Review>> getReviews(@RequestParam(required = false) String store,
                                                   @RequestParam(required = false) String rating,
                                                    @RequestParam(required = false) String reviewDate){
 
-        log.info("productName {}, rating {}, reviewDate {}", productName, rating, reviewDate);
+        log.info("store {}, rating {}, reviewDate {}", store, rating, reviewDate);
 
-        return ResponseEntity.ok(reviewService.getReviews(productName,rating,reviewDate));
+        return ResponseEntity.ok(reviewService.getReviews(store,rating,reviewDate));
 
     }
 

@@ -50,7 +50,7 @@ class ReviewControllerTest {
         reviewDto.setReviewSource("Amazon");
         reviewDto.setRating(5);
         reviewDto.setTitle("Excellent");
-        reviewDto.setProductName("Alexa");
+        reviewDto.setStore("Alexa");
         //reviewDto.setReviewedDate("2024-01-15T12:00:00");
 
         reviewEntity = new Review();
@@ -59,7 +59,7 @@ class ReviewControllerTest {
         reviewEntity.setReviewSource(reviewDto.getReviewSource());
         reviewEntity.setRating(reviewDto.getRating());
         reviewEntity.setTitle(reviewDto.getTitle());
-        reviewEntity.setProductName(reviewDto.getProductName());
+        reviewEntity.setStore(reviewDto.getStore());
     }
 
     @Test
@@ -79,19 +79,15 @@ class ReviewControllerTest {
     void testGetAllReviews() throws Exception {
         List<Review> reviews = Arrays.asList(reviewEntity);
         when(reviewService.getReviews(anyString(),anyString(),anyString())).thenReturn(reviews);
-
-        /*mockMvc.perform(get("/reviews"))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.length()").value(1))
-                .andExpect(jsonPath("$[0].productName").value("Alexa"));*/
+        
 
         mockMvc.perform(get("/reviews")
-                        .param("productName", "Alexa")
+                        .param("store", "Alexa")
                         .param("rating", "5")
                         .param("reviewDate", "2024-02-10"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.length()").value(1))
-                .andExpect(jsonPath("$[0].productName").value("Alexa"))
+                .andExpect(jsonPath("$[0].store").value("Alexa"))
                 .andExpect(jsonPath("$[0].rating").value(5));
 
         verify(reviewService, times(1)).getReviews(anyString(),anyString(),anyString());
